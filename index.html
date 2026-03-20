@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OEA — Panel de Métricas de Comunicaciones</title>
+<title>OEA — Panel de Metricas de Comunicaciones</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
@@ -22,8 +22,6 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh}
 .shell{display:flex;min-height:100vh}
-
-/* SIDEBAR */
 .sidebar{width:230px;flex-shrink:0;background:var(--navy);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto}
 .sb-logo{padding:20px 18px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
 .sb-badge{width:36px;height:36px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;margin-bottom:10px}
@@ -48,13 +46,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text
 .period-lbl{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em}
 .period-val{font-size:12px;color:#fff;font-weight:500;margin-top:2px}
 .period-prev{font-size:10px;color:rgba(255,255,255,.3);margin-top:3px}
-
-/* MAIN */
 .main{margin-left:230px;flex:1;display:flex;flex-direction:column}
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 26px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;gap:12px}
 .topbar-left h1{font-size:16px;font-weight:600;color:var(--text);letter-spacing:-.02em}
 .topbar-left p{font-size:12px;color:var(--text-2);margin-top:1px}
-.topbar-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.topbar-right{display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap}
 .ts{font-size:11px;color:var(--text-3);font-family:'DM Mono',monospace}
 .btn-primary{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;padding:7px 16px;border-radius:var(--radius);background:var(--navy);color:#fff;border:none;cursor:pointer;transition:background .15s,transform .1s}
 .btn-primary:hover{background:var(--navy-mid)}
@@ -65,15 +61,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text
 .view{display:none}
 .view.active{display:block;animation:fadeUp .2s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-
-/* CARDS */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--shadow)}
 .card+.card{margin-top:14px}
 .card-hd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap}
 .card-title{font-size:13px;font-weight:600;color:var(--text)}
 .card-sub{font-size:11px;color:var(--text-3);margin-top:2px}
-
-/* KPI GRID */
+.selector-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:14px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:11px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.05em}
+.field select,.field input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px}
+.helper{font-size:11px;color:var(--text-3)}
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin-bottom:18px}
 .kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
 .kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
@@ -83,14 +80,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text
 .kpi-delta{font-size:11px;font-weight:600;margin-top:5px}
 .kpi-prev{font-size:10px;color:var(--text-3);margin-top:2px;font-family:'DM Mono',monospace}
 .up{color:var(--green)}.down{color:var(--red)}.flat{color:var(--text-3)}
-
-/* CHARTS */
 .charts-row{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:14px}
 .legend{display:flex;flex-wrap:wrap;gap:10px}
 .legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-2)}
 .legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-
-/* SUMMARY */
 .summary-item{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--gray-100)}
 .summary-item:last-child{border-bottom:none}
 .s-left{display:flex;align-items:center;gap:10px}
@@ -101,8 +94,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text
 .s-curr{font-size:13px;font-weight:600;font-family:'DM Mono',monospace}
 .s-prev{font-size:10px;color:var(--text-3);font-family:'DM Mono',monospace}
 .s-delta{font-size:11px;font-weight:600;min-width:52px}
-
-/* HISTORICO TABLE */
 .data-table{width:100%;border-collapse:collapse;font-size:12px}
 .data-table th{padding:8px 12px;text-align:left;font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;background:var(--gray-50);border-bottom:1px solid var(--border);white-space:nowrap}
 .data-table td{padding:9px 12px;border-bottom:1px solid var(--gray-100);vertical-align:middle}
@@ -111,8 +102,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text
 .hist-curr{background:var(--blue-bg)!important;color:var(--navy-mid);font-weight:600;font-family:'DM Mono',monospace;font-size:11px}
 .hist-prev{font-size:11px;font-family:'DM Mono',monospace;color:var(--text-2)}
 .hist-delta{font-size:11px;font-weight:600}
-
-/* CONFIG */
 .cfg-card{border-radius:var(--radius-lg);padding:18px 20px;margin-bottom:14px;border:1px solid}
 .cfg-ok  {background:var(--green-bg);border-color:#A7D9BC}
 .cfg-warn{background:var(--amber-bg);border-color:#F2C98A}
@@ -128,8 +117,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text
 .sheet-schema th{padding:6px 10px;background:rgba(0,0,0,.05);font-weight:600;text-align:left;border:1px solid rgba(0,0,0,.08)}
 .sheet-schema td{padding:6px 10px;border:1px solid rgba(0,0,0,.08);font-family:'DM Mono',monospace}
 .sheet-schema tr:nth-child(even) td{background:rgba(0,0,0,.02)}
-
-/* ANALISIS */
 .analisis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
 .ac{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s;position:relative;overflow:hidden}
 .ac::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;opacity:0;transition:opacity .18s}
@@ -142,18 +129,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text
 .ac-title{font-size:13px;font-weight:600;margin-bottom:5px}
 .ac-desc{font-size:11px;color:var(--text-2);line-height:1.55}
 .ac-cta{font-size:11px;font-weight:600;color:var(--blue);margin-top:12px}
-
-/* TOAST */
 .toast-wrap{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
 .toast{background:#2B3344;color:#fff;font-size:12px;font-weight:500;padding:10px 16px;border-radius:var(--radius);box-shadow:0 4px 20px rgba(0,0,0,.25);animation:toastIn .25s ease;max-width:340px;pointer-events:all;transition:opacity .3s}
 .toast.ok{background:var(--green)}.toast.warn{background:var(--amber)}.toast.err{background:var(--red)}
 @keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-/* DEBUG PANEL */
 .debug-box{background:#1E2535;color:#4ADE80;font-family:'DM Mono',monospace;font-size:11px;padding:14px 16px;border-radius:var(--radius);margin-bottom:14px;white-space:pre-wrap;line-height:1.7;display:none}
 .debug-box.visible{display:block}
-
-/* RESPONSIVE */
+.period-mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+.period-stat{border:1px solid var(--border);border-radius:14px;padding:14px 16px;background:var(--surface)}
+.period-stat .lbl{font-size:11px;color:var(--text-3)}
+.period-stat .val{font-size:22px;font-weight:600;margin-top:4px}
+.period-stat .meta{font-size:11px;color:var(--text-2);margin-top:4px}
+.note{font-size:11px;color:var(--text-3);margin-top:8px}
 @media(max-width:860px){
   .sidebar{width:56px}
   .sb-title,.sb-sub,.nav-item span,.sb-sec,.sb-footer,.sync-text{display:none}
@@ -170,30 +157,28 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text
 </head>
 <body>
 <div class="shell">
-
-<!-- ════ SIDEBAR ════ -->
 <aside class="sidebar">
   <div class="sb-logo">
     <div class="sb-badge">OEA</div>
     <div class="sb-title">Comunicaciones</div>
     <div class="sb-sub">Dep. de Prensa</div>
   </div>
-  <div class="sb-sec">Navegación</div>
+  <div class="sb-sec">Navegacion</div>
   <div class="nav-item active" onclick="switchView('dashboard',this)">
     <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
     <span>Dashboard</span>
   </div>
   <div class="nav-item" onclick="switchView('historico',this)">
     <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
-    <span>Histórico</span>
+    <span>Historico</span>
   </div>
   <div class="nav-item" onclick="switchView('config',this)">
     <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z"/><path stroke-linecap="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-    <span>Configuración</span>
+    <span>Configuracion</span>
   </div>
   <div class="nav-item" onclick="switchView('analisis',this)">
     <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
-    <span>Análisis IA</span>
+    <span>Analisis IA</span>
   </div>
 
   <div class="sync-bar">
@@ -202,69 +187,103 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text
   </div>
   <div class="sb-footer">
     <div class="period-box">
-      <div class="period-lbl">Período actual</div>
+      <div class="period-lbl">Periodo actual</div>
       <div class="period-val" id="sb-curr">—</div>
       <div class="period-prev" id="sb-prev"></div>
     </div>
   </div>
 </aside>
 
-<!-- ════ MAIN ════ -->
 <div class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <h1 id="view-title">Dashboard de métricas</h1>
+      <h1 id="view-title">Dashboard de metricas</h1>
       <p id="view-sub">Datos en tiempo real desde Google Sheets</p>
     </div>
     <div class="topbar-right">
       <span class="ts" id="ts"></span>
       <button class="btn-secondary" onclick="loadData(true)">↺ Actualizar</button>
-      <button class="btn-primary"   onclick="exportCSV()">Exportar CSV</button>
+      <button class="btn-secondary" onclick="useAdjacentPrevious()">Comparar con anterior</button>
+      <button class="btn-primary" onclick="exportCSV()">Exportar CSV</button>
     </div>
   </div>
 
   <div class="content">
-
-    <!-- DASHBOARD -->
     <div id="view-dashboard" class="view active">
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-hd">
+          <div>
+            <div class="card-title">Selector de periodos</div>
+            <div class="card-sub">Puedes elegir cualquier trimestre sin perder el historico cargado</div>
+          </div>
+        </div>
+        <div class="selector-row">
+          <div class="field">
+            <label for="sel-current">Periodo actual</label>
+            <select id="sel-current" onchange="onSelectionChange()"></select>
+          </div>
+          <div class="field">
+            <label for="sel-previous">Periodo de comparacion</label>
+            <select id="sel-previous" onchange="onSelectionChange()"></select>
+          </div>
+          <div class="field">
+            <label for="sel-row">Fila para grafica individual</label>
+            <select id="sel-row" onchange="renderSingleRowChart()"></select>
+          </div>
+        </div>
+        <div class="helper" id="selection-helper">Selecciona dos periodos para comparar y una fila para revisar el detalle individual.</div>
+      </div>
+
       <div class="kpi-grid" id="kpi-grid"></div>
+
       <div class="charts-row">
         <div class="card">
           <div class="card-hd">
-            <div><div class="card-title">Variación vs período anterior</div><div class="card-sub">Cambio porcentual por indicador</div></div>
+            <div><div class="card-title">Variacion vs periodo de comparacion</div><div class="card-sub">Cambio porcentual por indicador</div></div>
             <div class="legend">
               <span class="legend-item"><span class="legend-dot" style="background:#1A7A4A"></span>Crecimiento</span>
-              <span class="legend-item"><span class="legend-dot" style="background:#C0392B"></span>Caída</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#C0392B"></span>Caida</span>
             </div>
           </div>
           <div style="position:relative;width:100%;height:330px"><canvas id="barChart"></canvas></div>
         </div>
         <div class="card">
-          <div class="card-hd"><div><div class="card-title">Por área</div><div class="card-sub">Distribución de actividad</div></div></div>
+          <div class="card-hd"><div><div class="card-title">Por area</div><div class="card-sub">Distribucion de actividad del periodo actual</div></div></div>
           <div class="legend" id="donut-legend" style="margin-bottom:10px"></div>
           <div style="position:relative;width:100%;height:230px"><canvas id="donutChart"></canvas></div>
+          <div class="note">Nota: esta dona excluye metricas porcentuales para evitar mezclar unidades incompatibles.</div>
         </div>
       </div>
+
       <div class="card">
-        <div class="card-hd"><div><div class="card-title">Todos los indicadores</div><div class="card-sub">Comparativo período actual vs anterior</div></div></div>
+        <div class="card-hd">
+          <div><div class="card-title">Grafica individual por fila</div><div class="card-sub">Detalle de un trimestre especifico, una fila a la vez</div></div>
+        </div>
+        <div style="position:relative;width:100%;height:340px"><canvas id="singleRowChart"></canvas></div>
+        <div class="period-mini-grid" id="row-stats"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd"><div><div class="card-title">Todos los indicadores</div><div class="card-sub">Comparativo del periodo actual vs el seleccionado como referencia</div></div></div>
         <div id="summary-list"></div>
       </div>
     </div>
 
-    <!-- HISTÓRICO -->
     <div id="view-historico" class="view">
       <div class="card" style="margin-bottom:14px">
         <div class="card-hd">
-          <div><div class="card-title">Comparativo de períodos</div><div class="card-sub">Índice normalizado: 100 = mejor valor por métrica</div></div>
+          <div><div class="card-title">Evolucion por metrica</div><div class="card-sub">Serie historica completa para una metrica a la vez</div></div>
         </div>
-        <div class="legend" style="margin-bottom:12px">
-          <span class="legend-item"><span class="legend-dot" style="background:#1A6FC4"></span>Período actual</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#DDE1E9"></span>Período anterior</span>
+        <div class="selector-row" style="margin-bottom:8px">
+          <div class="field">
+            <label for="hist-metric">Metrica</label>
+            <select id="hist-metric" onchange="renderHistorico()"></select>
+          </div>
         </div>
         <div style="position:relative;width:100%;height:290px"><canvas id="histChart"></canvas></div>
       </div>
       <div class="card">
-        <div class="card-hd"><div><div class="card-title">Tabla comparativa</div><div class="card-sub">Datos leídos en vivo desde el Sheet</div></div></div>
+        <div class="card-hd"><div><div class="card-title">Tabla historica completa</div><div class="card-sub">Todas las filas leidas desde el Sheet, sin descartar trimestres</div></div></div>
         <div style="overflow-x:auto">
           <table class="data-table" id="hist-table">
             <thead><tr id="hist-thead"></tr></thead>
@@ -274,15 +293,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text
       </div>
     </div>
 
-    <!-- CONFIGURACIÓN -->
     <div id="view-config" class="view">
       <div id="conn-card" style="margin-bottom:14px"></div>
-
       <div class="cfg-card cfg-info">
         <div class="cfg-title info">Estructura exacta del Google Sheet</div>
         <div class="cfg-body">
-          El panel lee la primera hoja. Cada <strong>fila = un período</strong>, cada <strong>columna = una métrica</strong>.<br>
-          La última fila es siempre el período más reciente (actual) y la anterior es el período de comparación.<br><br>
+          El panel lee la primera hoja. Cada <strong>fila = un periodo</strong>, cada <strong>columna = una metrica</strong>.<br>
+          A diferencia de la version anterior, esta version conserva <strong>todas</strong> las filas en memoria para poder comparar cualquier trimestre y revisar el historico completo.<br><br>
           <table class="sheet-schema">
             <tr><th>Columna</th><th>Encabezado</th><th>Ejemplo fila 2</th><th>Ejemplo fila 3</th></tr>
             <tr><td>A</td><td>periodo</td><td>Jun–Oct 2025</td><td>Nov 2025–Feb 2026</td></tr>
@@ -300,211 +317,139 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray-50);color:var(--text
           </table>
         </div>
       </div>
-
       <div class="cfg-card cfg-info">
-        <div class="cfg-title info">Cómo habilitar acceso público al Sheet</div>
+        <div class="cfg-title info">Como habilitar acceso publico al Sheet</div>
         <div class="cfg-body">
           <strong>1.</strong> Abre el Sheet en Google Drive<br>
-          <strong>2.</strong> Clic en <strong>Compartir</strong> (botón verde, esquina superior derecha)<br>
+          <strong>2.</strong> Clic en <strong>Compartir</strong><br>
           <strong>3.</strong> En "Acceso general" → <strong>Cualquier persona con el enlace</strong><br>
-          <strong>4.</strong> Rol: <strong>Lector</strong> (no se necesita edición)<br>
-          <strong>5.</strong> Guarda y regresa al panel → clic en <strong>↺ Actualizar</strong><br><br>
-          El panel accede solo con permisos de lectura. No modifica el Sheet.
+          <strong>4.</strong> Rol: <strong>Lector</strong><br>
+          <strong>5.</strong> Guarda y actualiza el panel<br><br>
+          El panel accede solo con permisos de lectura y no modifica el Sheet.
         </div>
       </div>
-
       <div id="debug-box" class="debug-box"></div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button class="btn-primary" onclick="loadData(true)">Probar conexión</button>
-        <button class="btn-secondary" onclick="toggleDebug()">Ver log de depuración</button>
+        <button class="btn-primary" onclick="loadData(true)">Probar conexion</button>
+        <button class="btn-secondary" onclick="toggleDebug()">Ver log de depuracion</button>
         <button class="btn-secondary" onclick="switchView('dashboard',document.querySelector('.nav-item'))">Ver dashboard</button>
       </div>
     </div>
 
-    <!-- ANÁLISIS -->
     <div id="view-analisis" class="view">
       <div class="card" style="margin-bottom:14px">
-        <div class="card-title" style="font-size:14px;margin-bottom:4px">Generador de análisis con IA</div>
-        <div class="card-sub">Cada tarjeta abre Claude con los datos actuales del Sheet pre-cargados.</div>
+        <div class="card-title" style="font-size:14px;margin-bottom:4px">Generador de analisis con IA</div>
+        <div class="card-sub">Cada tarjeta abre Claude con los datos del periodo actual y el comparativo seleccionados.</div>
       </div>
       <div class="analisis-grid" id="analisis-grid"></div>
     </div>
-
   </div>
 </div>
 </div>
 <div class="toast-wrap" id="toast-wrap"></div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-// CONFIG — modifica solo esto si cambias el Sheet
-// ═══════════════════════════════════════════════════════
 const SHEET_ID   = '1gZdIlX28VeiDNYLG0lscstFISdniwMpcIZIRcmRWabM';
-const SHEET_NAME = '';     // vacío = primera hoja
-const AUTO_REFRESH_MIN = 0; // 0 = desactivado; ej: 5 = cada 5 min
+const SHEET_NAME = '';
+const AUTO_REFRESH_MIN = 0;
 
-// ═══════════════════════════════════════════════════════
-// DEFINICIÓN DE MÉTRICAS
-// Mapea cada columna del Sheet a su metadata visual.
-// id         → debe coincidir EXACTAMENTE con el encabezado del Sheet
-// fmt        → n=número  K=miles  M=millones  %=porcentaje
-// scaleFmt   → cómo está almacenado en el Sheet:
-//              'raw'  = valor ya en unidad final (ej: 440 tweets)
-//              'M'    = valor en millones (ej: 4.7 significa 4,700,000)
-// ═══════════════════════════════════════════════════════
 const METRIC_DEFS = [
   { id:'tweets',          label:'Tweets emitidos',       area:'Redes Sociales', fmt:'n', scaleFmt:'raw', resp:'Karen',                color:'#1A6FC4' },
   { id:'seguidores',      label:'Nuevos seguidores',     area:'Redes Sociales', fmt:'n', scaleFmt:'raw', resp:'Karen',                color:'#1A6FC4' },
   { id:'impresiones',     label:'Impresiones totales',   area:'Redes Sociales', fmt:'M', scaleFmt:'M',   resp:'Karen',                color:'#1A6FC4' },
-  { id:'visitantes',      label:'Visitantes únicos',     area:'Sitio Web',      fmt:'K', scaleFmt:'raw', resp:'María Isabel / Paola', color:'#1A7A4A' },
-  { id:'pageviews',       label:'Páginas vistas',        area:'Sitio Web',      fmt:'M', scaleFmt:'M',   resp:'María Isabel / Paola', color:'#1A7A4A' },
-  { id:'email_productos', label:'Productos enviados',    area:'Email',          fmt:'n', scaleFmt:'raw', resp:'Mónica',               color:'#B45309' },
-  { id:'email_lecturas',  label:'Lecturas totales',      area:'Email',          fmt:'n', scaleFmt:'raw', resp:'Mónica',               color:'#B45309' },
-  { id:'email_apertura',  label:'Ratio de apertura',     area:'Email',          fmt:'%', scaleFmt:'raw', resp:'Mónica',               color:'#B45309' },
+  { id:'visitantes',      label:'Visitantes unicos',     area:'Sitio Web',      fmt:'K', scaleFmt:'raw', resp:'Maria Isabel / Paola', color:'#1A7A4A' },
+  { id:'pageviews',       label:'Paginas vistas',        area:'Sitio Web',      fmt:'M', scaleFmt:'M',   resp:'Maria Isabel / Paola', color:'#1A7A4A' },
+  { id:'email_productos', label:'Productos enviados',    area:'Email',          fmt:'n', scaleFmt:'raw', resp:'Monica',               color:'#B45309' },
+  { id:'email_lecturas',  label:'Lecturas totales',      area:'Email',          fmt:'n', scaleFmt:'raw', resp:'Monica',               color:'#B45309' },
+  { id:'email_apertura',  label:'Ratio de apertura',     area:'Email',          fmt:'%', scaleFmt:'raw', resp:'Monica',               color:'#B45309' },
   { id:'videos',          label:'Videos producidos',     area:'Video',          fmt:'n', scaleFmt:'raw', resp:'Kerne / Ernesto',      color:'#6D4BB8' },
   { id:'webcasts',        label:'Webcasts en directo',   area:'Video',          fmt:'n', scaleFmt:'raw', resp:'Kerne / Ernesto',      color:'#6D4BB8' },
-  { id:'galerias',        label:'Galerías fotográficas', area:'Fotografía',     fmt:'n', scaleFmt:'raw', resp:'Juan Manuel',          color:'#B0375C' },
+  { id:'galerias',        label:'Galerias fotograficas', area:'Fotografia',     fmt:'n', scaleFmt:'raw', resp:'Juan Manuel',          color:'#B0375C' },
 ];
-
-// KPIs destacados en la parte superior del dashboard
 const KPI_TOP = ['tweets','visitantes','email_lecturas','videos','galerias','email_apertura'];
-
 const ANALISIS_DEFS = [
-  { icon:'📋', title:'Informe ejecutivo completo',    desc:'Análisis narrativo de todas las áreas con recomendaciones.',        acClass:'ac-blue',   color:'#E8F2FB',
-    tpl:'Con los datos del panel de métricas OEA ({PERIODO}): {DATA}. Crea un INFORME EJECUTIVO completo en español con análisis por área, conclusiones y recomendaciones estratégicas para el próximo período.' },
-  { icon:'🚨', title:'Alertas y acciones urgentes',   desc:'Los 3 indicadores más críticos y acciones concretas.',              acClass:'ac-rose',   color:'#FCEDF3',
-    tpl:'Basándote en las métricas OEA {PERIODO}, identifica las 3 principales alertas que requieren atención urgente y propón acciones concretas. Datos: {DATA}' },
-  { icon:'🎯', title:'Metas para el próximo período', desc:'KPIs SMART para el siguiente ciclo basados en resultados actuales.', acClass:'ac-green',  color:'#E3F5EC',
-    tpl:'Crea metas y KPIs SMART para el próximo período OEA, basándote en los resultados de {PERIODO}: {DATA}. Para cada área propón un objetivo realista con % de mejora y acciones clave.' },
-  { icon:'📊', title:'Brecha producción vs alcance',  desc:'Análisis de divergencias entre producción de contenido y alcance.', acClass:'ac-amber',  color:'#FEF3E2',
-    tpl:'Analiza la brecha entre producción y alcance en métricas OEA {PERIODO}: {DATA}. Explica las divergencias y recomienda estrategias de distribución.' },
-  { icon:'✉️', title:'Email de convocatoria al equipo', desc:'Plantilla para solicitar datos del próximo período.',             acClass:'ac-purple', color:'#F0ECFC',
-    tpl:'Crea una plantilla de email para solicitar las métricas del próximo período al equipo OEA. Incluye métricas por responsable y formato de entrega. Período de referencia: {PERIODO}.' },
-  { icon:'🏛️', title:'Resumen para autoridades',     desc:'5 viñetas ejecutivas para presentar a la dirección.',               acClass:'ac-navy',   color:'#E8F2FB',
-    tpl:'Resume en máximo 5 viñetas los resultados de comunicaciones OEA para {PERIODO}: {DATA}. Lenguaje ejecutivo para autoridades.' },
+  { icon:'📋', title:'Informe ejecutivo completo',    desc:'Analisis narrativo de todas las areas con recomendaciones.',        acClass:'ac-blue',   color:'#E8F2FB',
+    tpl:'Con los datos del panel de metricas OEA (periodo actual {PERIODO} y comparacion con {PERIODO_ANT}): {DATA}. Crea un INFORME EJECUTIVO completo en espanol con analisis por area, conclusiones y recomendaciones estrategicas para el proximo periodo.' },
+  { icon:'🚨', title:'Alertas y acciones urgentes',   desc:'Los 3 indicadores mas criticos y acciones concretas.',              acClass:'ac-rose',   color:'#FCEDF3',
+    tpl:'Basandote en las metricas OEA del periodo {PERIODO} comparadas con {PERIODO_ANT}, identifica las 3 principales alertas que requieren atencion urgente y propon acciones concretas. Datos: {DATA}' },
+  { icon:'🎯', title:'Metas para el proximo periodo', desc:'KPIs SMART para el siguiente ciclo basados en resultados actuales.', acClass:'ac-green',  color:'#E3F5EC',
+    tpl:'Crea metas y KPIs SMART para el proximo periodo OEA, basandote en los resultados de {PERIODO} frente a {PERIODO_ANT}: {DATA}. Para cada area propon un objetivo realista con % de mejora y acciones clave.' },
+  { icon:'📊', title:'Brecha produccion vs alcance',  desc:'Analisis de divergencias entre produccion de contenido y alcance.', acClass:'ac-amber',  color:'#FEF3E2',
+    tpl:'Analiza la brecha entre produccion y alcance en metricas OEA de {PERIODO} vs {PERIODO_ANT}: {DATA}. Explica divergencias y recomienda estrategias de distribucion.' },
+  { icon:'✉️', title:'Email de convocatoria al equipo', desc:'Plantilla para solicitar datos del proximo periodo.',             acClass:'ac-purple', color:'#F0ECFC',
+    tpl:'Crea una plantilla de email para solicitar las metricas del proximo periodo al equipo OEA. Incluye metricas por responsable y formato de entrega. Periodo de referencia: {PERIODO} comparado con {PERIODO_ANT}.' },
+  { icon:'🏛️', title:'Resumen para autoridades',     desc:'5 puntos ejecutivos para presentar a la direccion.',                acClass:'ac-navy',   color:'#E8F2FB',
+    tpl:'Resume en maximo 5 puntos los resultados de comunicaciones OEA para {PERIODO} vs {PERIODO_ANT}: {DATA}. Lenguaje ejecutivo para autoridades.' },
 ];
 
-// ═══════════════════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════════════════
-let METRICS = [];          // array de métricas con curr/prev calculados
+let ALL_PERIODS = [];
+let METRICS = [];
 let periodCurr = '—';
 let periodPrev = '—';
-let lastSync   = null;
+let currentIndex = 0;
+let previousIndex = 0;
+let detailRowIndex = 0;
+let lastSync = null;
 let usingFallback = false;
 let charts = {};
 let debugLog = [];
 
-// ═══════════════════════════════════════════════════════
-// FALLBACK (datos precargados para cuando el Sheet no está disponible)
-// ═══════════════════════════════════════════════════════
-function buildFallback() {
-  const rawPrev = { tweets:440, seguidores:7493, impresiones:4.7, visitantes:715597, pageviews:2, email_productos:334, email_lecturas:125000, email_apertura:20.9, videos:39, webcasts:55, galerias:122 };
-  const rawCurr = { tweets:612, seguidores:4355, impresiones:2.3, visitantes:753000, pageviews:2, email_productos:281, email_lecturas:162598, email_apertura:21.56, videos:59, webcasts:30, galerias:138 };
-  periodPrev = 'Jun–Oct 2025';
-  periodCurr = 'Nov 2025–Feb 2026';
-  return buildMetrics(rawCurr, rawPrev);
+function buildFallbackPeriods() {
+  return [
+    { periodo:'Jun–Oct 2025', raw:{ tweets:440, seguidores:7493, impresiones:4.7, visitantes:715597, pageviews:2, email_productos:334, email_lecturas:125000, email_apertura:20.9, videos:39, webcasts:55, galerias:122 } },
+    { periodo:'Nov 2025–Feb 2026', raw:{ tweets:612, seguidores:4355, impresiones:2.3, visitantes:753000, pageviews:2, email_productos:281, email_lecturas:162598, email_apertura:21.56, videos:59, webcasts:30, galerias:138 } },
+  ];
 }
 
-// ═══════════════════════════════════════════════════════
-// BUILD METRICS from two raw row objects
-// ═══════════════════════════════════════════════════════
-function buildMetrics(rawCurr, rawPrev) {
+function buildMetricsFromPeriods(currPeriod, prevPeriod) {
   return METRIC_DEFS.map(def => {
-    let c = parseFloat(rawCurr[def.id]);
-    let p = parseFloat(rawPrev[def.id]);
-    // If stored as millions in Sheet, convert to actual value for calculations
+    let c = parseFloat(currPeriod?.raw?.[def.id]);
+    let p = parseFloat(prevPeriod?.raw?.[def.id]);
     if (def.scaleFmt === 'M') { c = c * 1e6; p = p * 1e6; }
     return { ...def, curr: isNaN(c) ? 0 : c, prev: isNaN(p) ? 0 : p };
   });
 }
 
-// ═══════════════════════════════════════════════════════
-// GOOGLE SHEETS PARSER
-// Reads row-based structure: row 1 = headers, each subsequent row = one period.
-// Uses the LAST row as current period, second-to-last as previous.
-// ═══════════════════════════════════════════════════════
 function parseGvizResponse(raw) {
   dbg('Raw response length: ' + raw.length);
-  dbg('First 200 chars: ' + raw.slice(0, 200));
-
-  // Strip the JS wrapper: google.visualization.Query.setResponse({...});
-  const jsonStr = raw
-    .replace(/^\s*\/\*[^*]*\*+(?:[^/*][^*]*\*+)*\/\s*/, '') // strip leading comment
-    .replace(/^[^{]*/, '')   // strip everything before first {
-    .replace(/[^}]*$/, '');  // strip everything after last }
-
-  dbg('Stripped JSON length: ' + jsonStr.length);
-
-  let parsed;
-  try {
-    parsed = JSON.parse(jsonStr);
-  } catch(e) {
-    // Alternative: try extracting just the table part
-    const match = raw.match(/google\.visualization\.Query\.setResponse\((\{.*\})\)/s);
-    if (match) {
-      parsed = JSON.parse(match[1]);
-    } else {
-      throw new Error('No se pudo parsear la respuesta JSON del Sheet: ' + e.message);
-    }
-  }
-
+  const match = raw.match(/google\.visualization\.Query\.setResponse\((\{.*\})\);?\s*$/s);
+  if (!match) throw new Error('No se pudo extraer el JSON de Google Visualization.');
+  const parsed = JSON.parse(match[1]);
   const table = parsed.table;
-  if (!table) throw new Error('La respuesta no contiene "table". ¿El Sheet está compartido públicamente?');
-
+  if (!table || !Array.isArray(table.cols) || !Array.isArray(table.rows)) throw new Error('La respuesta del Sheet no contiene una tabla valida.');
   const cols = table.cols;
   const rows = table.rows;
+  dbg('Columns found: ' + cols.length + ' · Rows found: ' + rows.length);
+  if (rows.length < 1) throw new Error('El Sheet no tiene filas de datos.');
 
-  dbg('Columns found: ' + cols.length + ' → ' + cols.map(c => c.label || c.id).join(', '));
-  dbg('Data rows found: ' + rows.length);
-
-  if (!cols || cols.length === 0) throw new Error('El Sheet no tiene columnas.');
-  if (!rows || rows.length < 2)   throw new Error('El Sheet necesita al menos 2 filas de datos (más el encabezado).');
-
-  // Build header index: label (lowercased) → column index
-  // The gviz API uses the first row as column labels when the sheet has a header row
   const headerIdx = {};
   cols.forEach((col, i) => {
-    const key = (col.label || col.id || '').toLowerCase().trim();
-    headerIdx[key] = i;
-    dbg('  col[' + i + '] = "' + key + '"');
+    headerIdx[(col.label || col.id || '').toLowerCase().trim()] = i;
   });
 
-  // Helper: get value from a row by column name
   function getVal(row, colName) {
     const idx = headerIdx[colName.toLowerCase()];
-    if (idx === undefined) { dbg('  WARN: column "' + colName + '" not found'); return null; }
+    if (idx === undefined) return null;
     const cell = row.c[idx];
     if (!cell || cell.v === null || cell.v === undefined) return null;
     return cell.v;
   }
 
-  // Use last row as current, second-to-last as previous
-  const rowCurr = rows[rows.length - 1];
-  const rowPrev = rows[rows.length - 2];
+  const periods = rows.map((row, rowIndex) => {
+    const periodo = String(getVal(row, 'periodo') ?? `Periodo ${rowIndex + 1}`);
+    const rawMetrics = {};
+    METRIC_DEFS.forEach(def => {
+      const val = getVal(row, def.id);
+      rawMetrics[def.id] = val !== null ? parseFloat(val) : NaN;
+    });
+    return { periodo, raw: rawMetrics, sourceRow: rowIndex + 2 };
+  }).filter(item => item.periodo);
 
-  periodCurr = String(getVal(rowCurr, 'periodo') || 'Período actual');
-  periodPrev = String(getVal(rowPrev, 'periodo') || 'Período anterior');
-
-  dbg('Period curr: ' + periodCurr);
-  dbg('Period prev: ' + periodPrev);
-
-  // Build raw value objects
-  const rawCurr = {}, rawPrev = {};
-  METRIC_DEFS.forEach(def => {
-    const vc = getVal(rowCurr, def.id);
-    const vp = getVal(rowPrev, def.id);
-    rawCurr[def.id] = vc !== null ? parseFloat(vc) : NaN;
-    rawPrev[def.id] = vp !== null ? parseFloat(vp) : NaN;
-    dbg('  ' + def.id + ': curr=' + rawCurr[def.id] + ' prev=' + rawPrev[def.id]);
-  });
-
-  return buildMetrics(rawCurr, rawPrev);
+  if (!periods.length) throw new Error('No se pudieron construir periodos validos desde el Sheet.');
+  dbg('Periods parsed: ' + periods.map(p => p.periodo).join(' | '));
+  return periods;
 }
 
-// ═══════════════════════════════════════════════════════
-// LOAD DATA
-// ═══════════════════════════════════════════════════════
 function sheetURL() {
   let url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:json&headers=1';
   if (SHEET_NAME) url += '&sheet=' + encodeURIComponent(SHEET_NAME);
@@ -521,34 +466,95 @@ async function loadData(manual = false) {
   try {
     const res = await fetch(sheetURL());
     dbg('HTTP status: ' + res.status);
-    if (!res.ok) throw new Error('HTTP ' + res.status + ' — verifica que el Sheet sea público');
+    if (!res.ok) throw new Error('HTTP ' + res.status + ' — verifica que el Sheet sea publico');
     const raw = await res.text();
-    const parsed = parseGvizResponse(raw);
-    METRICS = parsed;
+    ALL_PERIODS = parseGvizResponse(raw);
     usingFallback = false;
     lastSync = new Date();
+    initSelectionDefaults();
     setSyncUI('ok', 'Sincronizado · ' + lastSync.toLocaleTimeString('es', { hour:'2-digit', minute:'2-digit' }));
     setConnCard('ok');
     if (manual) toast('Panel actualizado desde Google Sheets.', 'ok');
-    dbg('SUCCESS — ' + METRICS.length + ' métricas cargadas');
+    dbg('SUCCESS — periodos cargados: ' + ALL_PERIODS.length);
   } catch(e) {
     dbg('ERROR: ' + e.message);
-    METRICS = buildFallback();
+    ALL_PERIODS = buildFallbackPeriods();
     usingFallback = true;
-    setSyncUI('fallback', 'Sin conexión — usando datos de respaldo');
+    lastSync = new Date();
+    initSelectionDefaults();
+    setSyncUI('fallback', 'Sin conexion — usando datos de respaldo');
     setConnCard('warn', e.message);
     if (manual) toast('No se pudo conectar al Sheet. Mostrando datos de respaldo.', 'warn');
     console.warn('[OEA Panel]', e.message);
   }
 
+  refreshComparativeState();
+  populateSelectors();
   updateSidebar();
   renderAll();
   updateDebugBox();
 }
 
-// ═══════════════════════════════════════════════════════
-// DEBUG
-// ═══════════════════════════════════════════════════════
+function initSelectionDefaults() {
+  const last = ALL_PERIODS.length - 1;
+  currentIndex = Math.max(last, 0);
+  previousIndex = Math.max(last - 1, 0);
+  detailRowIndex = currentIndex;
+}
+
+function refreshComparativeState() {
+  const currPeriod = ALL_PERIODS[currentIndex] || ALL_PERIODS[ALL_PERIODS.length - 1];
+  const prevPeriod = ALL_PERIODS[previousIndex] || currPeriod;
+  periodCurr = currPeriod?.periodo || '—';
+  periodPrev = prevPeriod?.periodo || '—';
+  METRICS = buildMetricsFromPeriods(currPeriod, prevPeriod);
+}
+
+function populateSelectors() {
+  const currSel = document.getElementById('sel-current');
+  const prevSel = document.getElementById('sel-previous');
+  const rowSel  = document.getElementById('sel-row');
+  const histSel = document.getElementById('hist-metric');
+  if (!currSel || !prevSel || !rowSel || !histSel) return;
+
+  const options = ALL_PERIODS.map((p, i) => `<option value="${i}">${p.periodo}</option>`).join('');
+  currSel.innerHTML = options;
+  prevSel.innerHTML = options;
+  rowSel.innerHTML  = options;
+  currSel.value = String(currentIndex);
+  prevSel.value = String(previousIndex);
+  rowSel.value = String(detailRowIndex);
+
+  histSel.innerHTML = METRIC_DEFS.map(def => `<option value="${def.id}">${def.label}</option>`).join('');
+  if (!histSel.value) histSel.value = METRIC_DEFS[0].id;
+  updateSelectionHelper();
+}
+
+function onSelectionChange() {
+  currentIndex = parseInt(document.getElementById('sel-current').value, 10);
+  previousIndex = parseInt(document.getElementById('sel-previous').value, 10);
+  refreshComparativeState();
+  updateSidebar();
+  updateSelectionHelper();
+  renderAll();
+}
+
+function useAdjacentPrevious() {
+  currentIndex = parseInt(document.getElementById('sel-current').value, 10);
+  previousIndex = Math.max(currentIndex - 1, 0);
+  document.getElementById('sel-previous').value = String(previousIndex);
+  refreshComparativeState();
+  updateSidebar();
+  updateSelectionHelper();
+  renderAll();
+  toast('Se actualizo la comparacion con el periodo inmediatamente anterior.', 'ok');
+}
+
+function updateSelectionHelper() {
+  const helper = document.getElementById('selection-helper');
+  if (helper) helper.textContent = `Comparando ${periodCurr} contra ${periodPrev}. Fila individual: ${ALL_PERIODS[detailRowIndex]?.periodo || periodCurr}.`;
+}
+
 function dbg(msg) { debugLog.push(msg); }
 function updateDebugBox() {
   const el = document.getElementById('debug-box');
@@ -559,9 +565,6 @@ function toggleDebug() {
   el.classList.toggle('visible');
 }
 
-// ═══════════════════════════════════════════════════════
-// SYNC UI
-// ═══════════════════════════════════════════════════════
 function setSyncUI(status, msg) {
   document.getElementById('sync-dot').className = 'sync-dot ' + status;
   document.getElementById('sync-text').textContent = msg;
@@ -573,23 +576,30 @@ function updateSidebar() {
 function setConnCard(type, err) {
   const el = document.getElementById('conn-card');
   if (type === 'ok') {
-    el.innerHTML = '<div class="cfg-card cfg-ok"><div class="cfg-title ok">Conexión activa — datos en tiempo real</div><div class="cfg-body">Sheet leído correctamente. Última sincronización: <code>' + (lastSync ? lastSync.toLocaleString('es') : '—') + '</code><br>Período actual: <strong>' + periodCurr + '</strong> · Período anterior: <strong>' + periodPrev + '</strong></div></div>';
+    el.innerHTML = '<div class="cfg-card cfg-ok"><div class="cfg-title ok">Conexion activa — datos en tiempo real</div><div class="cfg-body">Sheet leido correctamente. Ultima sincronizacion: <code>' + (lastSync ? lastSync.toLocaleString('es') : '—') + '</code><br>Total de periodos cargados: <strong>' + ALL_PERIODS.length + '</strong><br>Periodo actual: <strong>' + periodCurr + '</strong> · Periodo de comparacion: <strong>' + periodPrev + '</strong></div></div>';
   } else {
-    el.innerHTML = '<div class="cfg-card cfg-warn"><div class="cfg-title warn">Sheet no accesible — mostrando datos de respaldo</div><div class="cfg-body">Error: <code>' + (err || 'Desconocido') + '</code><br><br><strong>Causas más comunes:</strong><br>• El Sheet no está compartido como "Cualquier persona con el enlace puede ver"<br>• CORS bloqueado por tu navegador (intenta otro navegador o abre el archivo desde servidor)<br>• Sin conexión a Internet<br><br>Usa el botón <strong>Ver log de depuración</strong> para más detalles técnicos.</div></div>';
+    el.innerHTML = '<div class="cfg-card cfg-warn"><div class="cfg-title warn">Sheet no accesible — mostrando datos de respaldo</div><div class="cfg-body">Error: <code>' + (err || 'Desconocido') + '</code><br><br><strong>Causas comunes:</strong><br>• El Sheet no esta compartido como "Cualquier persona con el enlace puede ver"<br>• El archivo se esta abriendo desde <code>file://</code> y el navegador bloquea la solicitud<br>• Sin conexion a Internet<br><br>Usa el boton <strong>Ver log de depuracion</strong> para detalles tecnicos.</div></div>';
   }
 }
 
-// ═══════════════════════════════════════════════════════
-// UTILS
-// ═══════════════════════════════════════════════════════
-function pct(c, p)      { if (!p || p === 0) return 0; return ((c - p) / p * 100); }
-function dCls(p)        { return p > 0 ? 'up' : p < 0 ? 'down' : 'flat'; }
-function dArr(p)        { return p > 0 ? '▲' : p < 0 ? '▼' : '→'; }
+function pct(c, p) { if (!p || p === 0) return 0; return ((c - p) / p * 100); }
+function dCls(p) { return p > 0 ? 'up' : p < 0 ? 'down' : 'flat'; }
+function dArr(p) { return p > 0 ? '▲' : p < 0 ? '▼' : '→'; }
 function fmtVal(v, fmt) {
   if (fmt === 'M') return (v / 1e6).toFixed(1) + 'M';
-  if (fmt === 'K') return Math.round(v / 1000) + 'K';
+  if (fmt === 'K') return Math.round(v / 1000).toLocaleString('es') + 'K';
   if (fmt === '%') return parseFloat(v).toFixed(2) + '%';
   return Number(v).toLocaleString('es');
+}
+function getScaledValueForDisplay(period, def) {
+  const raw = parseFloat(period?.raw?.[def.id]);
+  if (isNaN(raw)) return 0;
+  if (def.scaleFmt === 'M') return raw * 1e6;
+  return raw;
+}
+function getDisplayUnitSuffix(def) {
+  if (def.fmt === '%') return '%';
+  return '';
 }
 function toast(msg, type) {
   const w = document.getElementById('toast-wrap');
@@ -607,14 +617,11 @@ function setTs() {
 }
 setTs(); setInterval(setTs, 30000);
 
-// ═══════════════════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════════════════
 const VMETA = {
-  dashboard: { title:'Dashboard de métricas',     sub:'Datos en tiempo real desde Google Sheets' },
-  historico:  { title:'Histórico de períodos',     sub:'Evolución comparativa entre períodos' },
-  config:     { title:'Configuración de conexión', sub:'Estado del Sheet y estructura de datos' },
-  analisis:   { title:'Análisis con IA',           sub:'Genera informes y recomendaciones automáticamente' },
+  dashboard: { title:'Dashboard de metricas',     sub:'Comparaciones dinamicas entre cualquier par de periodos' },
+  historico:  { title:'Historico de periodos',     sub:'Serie completa por metrica y tabla de todas las filas' },
+  config:     { title:'Configuracion de conexion', sub:'Estado del Sheet y estructura de datos' },
+  analisis:   { title:'Analisis con IA',           sub:'Prompts armados con los periodos que selecciones' },
 };
 function switchView(id, el) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -627,17 +634,16 @@ function switchView(id, el) {
   if (id === 'analisis')  renderAnalisis();
 }
 
-// ═══════════════════════════════════════════════════════
-// RENDER — ALL
-// ═══════════════════════════════════════════════════════
 function renderAll() {
   renderKPIs();
   renderBarChart();
   renderDonutChart();
+  renderSingleRowChart();
   renderSummary();
+  renderHistorico();
+  renderAnalisis();
 }
 
-// ─── KPIs ───
 function renderKPIs() {
   let display = KPI_TOP.map(id => METRICS.find(m => m.id === id)).filter(Boolean);
   if (display.length < 3) display = METRICS.slice(0, 6);
@@ -648,12 +654,11 @@ function renderKPIs() {
       '<div class="kpi-label">' + m.label + '</div>' +
       '<div class="kpi-value">' + fmtVal(m.curr, m.fmt) + '</div>' +
       '<div class="kpi-delta ' + dCls(p) + '">' + dArr(p) + ' ' + Math.abs(p).toFixed(1) + '%</div>' +
-      '<div class="kpi-prev">ant: ' + fmtVal(m.prev, m.fmt) + '</div>' +
+      '<div class="kpi-prev">' + periodPrev + ': ' + fmtVal(m.prev, m.fmt) + '</div>' +
       '</div>';
   }).join('');
 }
 
-// ─── BAR CHART ───
 function renderBarChart() {
   if (charts.bar) charts.bar.destroy();
   const deltas = METRICS.map(m => parseFloat(pct(m.curr, m.prev).toFixed(1)));
@@ -665,7 +670,10 @@ function renderBarChart() {
     },
     options: {
       indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-      plugins: { legend:{ display:false }, tooltip:{ callbacks:{ label: ctx => (ctx.raw > 0 ? '+' : '') + ctx.raw.toFixed(1) + '%' } } },
+      plugins: {
+        legend:{ display:false },
+        tooltip:{ callbacks:{ label: ctx => (ctx.raw > 0 ? '+' : '') + ctx.raw.toFixed(1) + '%' } }
+      },
       scales: {
         x: { ticks:{ callback: v => v + '%', font:{ size:10, family:'DM Mono' } }, grid:{ color:'rgba(0,0,0,.04)' } },
         y: { ticks:{ font:{ size:10 } }, grid:{ display:false } }
@@ -674,13 +682,12 @@ function renderBarChart() {
   });
 }
 
-// ─── DONUT CHART ───
 function renderDonutChart() {
   if (charts.donut) charts.donut.destroy();
   const map = {};
-  METRICS.forEach(m => {
+  METRICS.filter(m => m.fmt !== '%').forEach(m => {
     if (!map[m.area]) map[m.area] = { total:0, color:m.color };
-    const v = m.fmt === 'M' ? m.curr/1e6 : m.fmt === 'K' ? m.curr/1000 : m.curr;
+    const v = m.fmt === 'M' ? m.curr / 1e6 : m.fmt === 'K' ? m.curr / 1000 : m.curr;
     map[m.area].total += v;
   });
   const areas  = Object.keys(map);
@@ -692,11 +699,69 @@ function renderDonutChart() {
   charts.donut = new Chart(document.getElementById('donutChart'), {
     type: 'doughnut',
     data: { labels: areas, datasets:[{ data: totals, backgroundColor: colors, borderWidth:0 }] },
-    options: { responsive:true, maintainAspectRatio:false, cutout:'68%', plugins:{ legend:{ display:false } } }
+    options: {
+      responsive:true,
+      maintainAspectRatio:false,
+      cutout:'68%',
+      plugins:{ legend:{ display:false } }
+    }
   });
 }
 
-// ─── SUMMARY ───
+function renderSingleRowChart() {
+  detailRowIndex = parseInt(document.getElementById('sel-row')?.value ?? detailRowIndex, 10);
+  const period = ALL_PERIODS[detailRowIndex] || ALL_PERIODS[currentIndex];
+  if (!period) return;
+  if (charts.singleRow) charts.singleRow.destroy();
+
+  const values = METRIC_DEFS.map(def => {
+    const scaled = getScaledValueForDisplay(period, def);
+    return def.fmt === 'M' ? scaled / 1e6 : def.fmt === 'K' ? scaled / 1000 : scaled;
+  });
+
+  charts.singleRow = new Chart(document.getElementById('singleRowChart'), {
+    type: 'bar',
+    data: {
+      labels: METRIC_DEFS.map(def => def.label),
+      datasets: [{
+        label: period.periodo,
+        data: values,
+        backgroundColor: METRIC_DEFS.map(def => def.color),
+        borderRadius: 4,
+        borderWidth: 0,
+      }]
+    },
+    options: {
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{ display:false },
+        tooltip:{
+          callbacks:{
+            label: (ctx) => {
+              const def = METRIC_DEFS[ctx.dataIndex];
+              const actual = getScaledValueForDisplay(period, def);
+              return def.label + ': ' + fmtVal(actual, def.fmt);
+            }
+          }
+        }
+      },
+      scales:{
+        x:{ ticks:{ font:{ size:10 }, autoSkip:false, maxRotation:42 }, grid:{ display:false } },
+        y:{ ticks:{ font:{ size:10, family:'DM Mono' } }, grid:{ color:'rgba(0,0,0,.04)' } }
+      }
+    }
+  });
+
+  const statsIds = ['tweets','visitantes','email_lecturas','videos'];
+  document.getElementById('row-stats').innerHTML = statsIds.map(id => {
+    const def = METRIC_DEFS.find(m => m.id === id);
+    const actual = getScaledValueForDisplay(period, def);
+    return `<div class="period-stat"><div class="lbl">${def.label}</div><div class="val">${fmtVal(actual, def.fmt)}</div><div class="meta">${def.area} · ${period.periodo}</div></div>`;
+  }).join('');
+  updateSelectionHelper();
+}
+
 function renderSummary() {
   document.getElementById('summary-list').innerHTML = METRICS.map(m => {
     const p = pct(m.curr, m.prev);
@@ -704,56 +769,68 @@ function renderSummary() {
       '<div class="s-left"><div class="s-dot" style="background:' + m.color + '"></div>' +
       '<div><div class="s-label">' + m.label + '</div><div class="s-area">' + m.area + ' · ' + m.resp + '</div></div></div>' +
       '<div class="s-right"><div><div class="s-curr">' + fmtVal(m.curr, m.fmt) + '</div>' +
-      '<div class="s-prev">ant: ' + fmtVal(m.prev, m.fmt) + '</div></div>' +
+      '<div class="s-prev">' + periodPrev + ': ' + fmtVal(m.prev, m.fmt) + '</div></div>' +
       '<div class="s-delta ' + dCls(p) + '">' + dArr(p) + ' ' + Math.abs(p).toFixed(1) + '%</div></div></div>';
   }).join('');
 }
 
-// ─── HISTÓRICO ───
 function renderHistorico() {
+  const metricId = document.getElementById('hist-metric')?.value || METRIC_DEFS[0].id;
+  const def = METRIC_DEFS.find(m => m.id === metricId) || METRIC_DEFS[0];
   if (charts.hist) charts.hist.destroy();
-  const cV = METRICS.map(m => m.curr), pV = METRICS.map(m => m.prev);
-  const mx = cV.map((v,i) => Math.max(v, pV[i]));
-  const nC = cV.map((v,i) => mx[i] > 0 ? Math.round((v/mx[i])*100) : 0);
-  const nP = pV.map((v,i) => mx[i] > 0 ? Math.round((v/mx[i])*100) : 0);
-  const lb = METRICS.map(m => m.label.length > 13 ? m.label.slice(0,12)+'…' : m.label);
+
+  const labels = ALL_PERIODS.map(p => p.periodo);
+  const values = ALL_PERIODS.map(period => getScaledValueForDisplay(period, def));
   charts.hist = new Chart(document.getElementById('histChart'), {
-    type: 'bar',
-    data: { labels:lb, datasets:[
-      { label:'Actual',   data:nC, backgroundColor:'#1A6FC4', borderRadius:4, borderWidth:0 },
-      { label:'Anterior', data:nP, backgroundColor:'#DDE1E9', borderRadius:4, borderWidth:0 }
-    ]},
-    options:{
-      responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{ display:false } },
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: def.label,
+        data: values,
+        tension: .25,
+        borderColor: def.color,
+        backgroundColor: def.color,
+        pointRadius: 4,
+        pointHoverRadius: 5,
+        fill: false,
+      }]
+    },
+    options: {
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{ display:false },
+        tooltip:{ callbacks:{ label: (ctx) => def.label + ': ' + fmtVal(ctx.raw, def.fmt) } }
+      },
       scales:{
-        x:{ ticks:{ font:{ size:9 }, autoSkip:false, maxRotation:42 }, grid:{ display:false } },
-        y:{ ticks:{ font:{ size:10, family:'DM Mono' } }, title:{ display:true, text:'Índice normalizado', font:{ size:10 }, color:'#9BA5B5' } }
+        x:{ ticks:{ font:{ size:10 }, autoSkip:false, maxRotation:42 }, grid:{ display:false } },
+        y:{ ticks:{ font:{ size:10, family:'DM Mono' }, callback: (v) => fmtTick(v, def.fmt) }, grid:{ color:'rgba(0,0,0,.04)' } }
       }
     }
   });
 
-  // Table headers
-  document.getElementById('hist-thead').innerHTML =
-    '<th>Área</th><th>Métrica</th><th>Responsable</th>' +
-    '<th>' + periodPrev + '</th>' +
-    '<th style="background:var(--blue-bg);color:var(--navy-mid)">' + periodCurr + '</th>' +
-    '<th>Variación</th>';
-
-  document.getElementById('hist-tbody').innerHTML = METRICS.map(m => {
-    const p = pct(m.curr, m.prev);
+  document.getElementById('hist-thead').innerHTML = '<th>Periodo</th>' + METRIC_DEFS.map(m => `<th>${m.label}</th>`).join('');
+  document.getElementById('hist-tbody').innerHTML = ALL_PERIODS.map((period, idx) => {
     return '<tr>' +
-      '<td style="font-size:11px;font-weight:600;color:' + m.color + '">' + m.area + '</td>' +
-      '<td style="font-weight:500;font-size:12px">' + m.label + '</td>' +
-      '<td style="color:var(--text-2);font-size:11px">' + m.resp + '</td>' +
-      '<td class="hist-prev">' + fmtVal(m.prev, m.fmt) + '</td>' +
-      '<td class="hist-curr">' + fmtVal(m.curr, m.fmt) + '</td>' +
-      '<td class="hist-delta ' + dCls(p) + '">' + dArr(p) + ' ' + Math.abs(p).toFixed(1) + '%</td>' +
+      `<td class="${idx === currentIndex ? 'hist-curr' : ''}">${period.periodo}</td>` +
+      METRIC_DEFS.map(def2 => {
+        const actual = getScaledValueForDisplay(period, def2);
+        return `<td class="${idx === currentIndex ? 'hist-curr' : 'hist-prev'}">${fmtVal(actual, def2.fmt)}</td>`;
+      }).join('') +
       '</tr>';
   }).join('');
 }
 
-// ─── ANÁLISIS ───
+function fmtTick(v, fmt) {
+  if (fmt === 'M') return (v / 1e6).toFixed(1) + 'M';
+  if (fmt === 'K') return Math.round(v / 1000) + 'K';
+  if (fmt === '%') return v.toFixed(1) + '%';
+  if (v >= 1e6) return (v / 1e6).toFixed(1) + 'M';
+  if (v >= 1e3) return Math.round(v / 1e3) + 'K';
+  return Number(v).toLocaleString('es');
+}
+
 function renderAnalisis() {
   document.getElementById('analisis-grid').innerHTML = ANALISIS_DEFS.map((a,i) =>
     '<div class="ac ' + a.acClass + '" onclick="openAnalisis(' + i + ')" role="button" tabindex="0">' +
@@ -767,43 +844,36 @@ function renderAnalisis() {
 function buildDataSummary() {
   return METRICS.map(m => {
     const p = pct(m.curr, m.prev);
-    return m.label + ' ' + fmtVal(m.curr, m.fmt) + ' (' + (p>0?'+':'') + p.toFixed(1) + '%)';
+    return m.label + ' ' + fmtVal(m.curr, m.fmt) + ' (' + (p>0?'+':'') + p.toFixed(1) + '% vs ' + periodPrev + ')';
   }).join(', ');
 }
 function openAnalisis(i) {
   const a = ANALISIS_DEFS[i];
-  const prompt = a.tpl.replace(/{PERIODO}/g, periodCurr).replace(/{DATA}/g, buildDataSummary());
+  const prompt = a.tpl.replace(/{PERIODO}/g, periodCurr).replace(/{PERIODO_ANT}/g, periodPrev).replace(/{DATA}/g, buildDataSummary());
   window.open('https://claude.ai/new?q=' + encodeURIComponent(prompt), '_blank');
 }
 
-// ─── EXPORT ───
 function exportCSV() {
-  const rows = [['Área','Métrica','Responsable',periodPrev,periodCurr,'Variación %']];
-  METRICS.forEach(m => {
-    rows.push([m.area, m.label, m.resp, m.prev, m.curr, pct(m.curr,m.prev).toFixed(1)+'%']);
+  const rows = [['Periodo', ...METRIC_DEFS.map(m => m.label)]];
+  ALL_PERIODS.forEach(period => {
+    rows.push([period.periodo, ...METRIC_DEFS.map(def => getScaledValueForDisplay(period, def))]);
   });
   const csv = '\uFEFF' + rows.map(r => r.map(v => '"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
-  a.download = 'OEA_Metricas_Panel.csv';
+  a.download = 'OEA_Metricas_Panel_Historico.csv';
   a.click();
   toast('CSV exportado.', 'ok');
 }
 
-// ═══════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════
-// Render fallback immediately so panel is never blank
-METRICS = buildFallback();
+ALL_PERIODS = buildFallbackPeriods();
+initSelectionDefaults();
+refreshComparativeState();
+populateSelectors();
 updateSidebar();
 renderAll();
-renderAnalisis();
-setConnCard('warn', 'Iniciando conexión…');
-
-// Then load live data from Sheet
+setConnCard('warn', 'Iniciando conexion…');
 loadData(false);
-
-// Auto-refresh
 if (AUTO_REFRESH_MIN > 0) {
   setInterval(() => loadData(false), AUTO_REFRESH_MIN * 60000);
 }
